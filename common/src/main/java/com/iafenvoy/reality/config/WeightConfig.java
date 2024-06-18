@@ -11,7 +11,7 @@ import java.util.Map;
 public class WeightConfig {
     private static WeightConfig INSTANCE = null;
     private static WeightAmountConfig AMOUNT_INSTANCE = null;
-    public double speedMultiplier = 1;
+    public double speedMultiplier = 1e-4;
     public boolean affectCreative = true;
     public double defaultWeight = 1;
 
