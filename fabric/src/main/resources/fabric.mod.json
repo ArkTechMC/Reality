@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "reality",
+  "version": "${version}",
+
+  "name": "Reality",
+  "description": "",
+  "authors": [],
+  "contact": {},
+
+  "license": "GNU LGPL 3.0",
+  "icon": "icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.iafenvoy.reality.fabric.RealityFabric"
+    ],
+    "cardinal-components-entity": [
+      "com.iafenvoy.reality.fabric.data.ModComponentEntry"
+    ]
+  },
+  "custom": {
+    "cardinal-components": [
+      "reality:player_data"
+    ]
+  },
+  "mixins": [
+    "reality.mixins.json",
+    "reality-common.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": ">=1.20.1"
+  }
+}
