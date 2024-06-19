@@ -1,17 +1,16 @@
 package com.iafenvoy.reality.config;
 
+import it.unimi.dsi.fastutil.objects.Object2DoubleArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class WeightConfig {
     private static WeightConfig INSTANCE = null;
     private static WeightAmountConfig AMOUNT_INSTANCE = null;
-    public double speedMultiplier = 1e-4;
+    public double speedBase = 1e-6;
     public boolean affectCreative = true;
     public double defaultWeight = 1;
 
@@ -28,14 +27,14 @@ public class WeightConfig {
     }
 
     public static class WeightAmountConfig {
-        public final HashMap<Item, Double> data = new HashMap<>();
+        public final Object2DoubleMap<Item> data = new Object2DoubleArrayMap<>();
 
         public WeightAmountConfig() {
-            Map<String, Double> map = ConfigLoader.loadDoubleMap("./config/reality/weight_amount.json");
-            for (Map.Entry<String, Double> entry : map.entrySet()) {
+            Object2DoubleMap<String> map = ConfigLoader.loadDoubleMap("./config/reality/weight_amount.json");
+            for (Object2DoubleMap.Entry<String> entry : map.object2DoubleEntrySet()) {
                 Item item = Registries.ITEM.get(new Identifier(entry.getKey()));
                 if (item != Items.AIR)
-                    this.data.put(item, entry.getValue());
+                    this.data.put(item, entry.getDoubleValue());
             }
         }
     }

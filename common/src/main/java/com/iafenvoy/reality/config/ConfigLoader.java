@@ -5,6 +5,8 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.iafenvoy.reality.Reality;
+import it.unimi.dsi.fastutil.objects.Object2DoubleArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -34,9 +36,9 @@ public class ConfigLoader {
         }
     }
 
-    public static Map<String, Double> loadDoubleMap(String path) {
+    public static Object2DoubleMap<String> loadDoubleMap(String path) {
         Map<String, JsonElement> data = loadMap(path);
-        Map<String, Double> result = new HashMap<>();
+        Object2DoubleMap<String> result = new Object2DoubleArrayMap<>();
         for (Map.Entry<String, JsonElement> entry : data.entrySet())
             try {
                 result.put(entry.getKey(), entry.getValue().getAsDouble());
